@@ -1,0 +1,79 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Battery storage control",
+        "description": "Scheduled charging and grid-following discharging (max. 800 W).",
+        "data": {
+          "name": "Name",
+          "soc_sensor": "Battery state of charge (%)",
+          "grid_sensor": "Grid power / import (W or kW)",
+          "charge_power_entity": "Charge power entity",
+          "discharge_power_entity": "Discharge power entity",
+          "grid_invert": "Invert grid sensor",
+          "setpoint_invert": "Invert combined setpoint",
+          "target_grid_power": "Target grid import while discharging",
+          "update_interval": "Control interval"
+        },
+        "data_description": {
+          "grid_sensor": "Import must be positive, export negative – otherwise enable \"Invert grid sensor\".",
+          "charge_power_entity": "number/input_number that receives the charge power in W.",
+          "discharge_power_entity": "number/input_number for the discharge power in W. May be the same entity as for charging (then: discharge positive, charge negative).",
+          "setpoint_invert": "Only for a combined entity: charge positive, discharge negative.",
+          "target_grid_power": "A small residual import (e.g. 10 W) prevents feeding into the grid.",
+          "update_interval": "Time between two control steps. Too short causes oscillation."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Battery storage control",
+        "data": {
+          "soc_sensor": "Battery state of charge (%)",
+          "grid_sensor": "Grid power / import (W or kW)",
+          "charge_power_entity": "Charge power entity",
+          "discharge_power_entity": "Discharge power entity",
+          "grid_invert": "Invert grid sensor",
+          "setpoint_invert": "Invert combined setpoint",
+          "target_grid_power": "Target grid import while discharging",
+          "update_interval": "Control interval"
+        }
+      }
+    }
+  },
+  "entity": {
+    "number": {
+      "min_soc": { "name": "Minimum charge" },
+      "max_soc": { "name": "Maximum charge" },
+      "max_charge_power": { "name": "Maximum charge power" },
+      "max_discharge_power": { "name": "Maximum discharge power" }
+    },
+    "time": {
+      "charge_start": { "name": "Charge start" },
+      "charge_end": { "name": "Charge end" },
+      "discharge_start": { "name": "Discharge start" },
+      "discharge_end": { "name": "Discharge end" }
+    },
+    "switch": {
+      "enabled": { "name": "Automatic" }
+    },
+    "sensor": {
+      "mode": {
+        "name": "Operating mode",
+        "state": {
+          "disabled": "Disabled",
+          "idle": "Idle",
+          "charging": "Charging",
+          "full": "Full",
+          "discharging": "Discharging",
+          "empty": "Minimum charge reached",
+          "error": "Error"
+        }
+      },
+      "charge_setpoint": { "name": "Charge setpoint" },
+      "discharge_setpoint": { "name": "Discharge setpoint" }
+    }
+  }
+}

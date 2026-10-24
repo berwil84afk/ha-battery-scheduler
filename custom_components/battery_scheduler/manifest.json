@@ -1,0 +1,11 @@
+{
+  "domain": "battery_scheduler",
+  "name": "Battery Scheduler",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "requirements": [],
+  "version": "1.0.0"
+}

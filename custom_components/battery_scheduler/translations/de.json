@@ -1,0 +1,79 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Batteriespeicher-Steuerung",
+        "description": "Zeitgesteuertes Laden und netzgeführtes Entladen (max. 800 W).",
+        "data": {
+          "name": "Name",
+          "soc_sensor": "Ladezustand des Speichers (%)",
+          "grid_sensor": "Netzleistung / Stromimport (W oder kW)",
+          "charge_power_entity": "Entität für Ladeleistung",
+          "discharge_power_entity": "Entität für Entladeleistung",
+          "grid_invert": "Netzsensor invertieren",
+          "setpoint_invert": "Gemeinsamen Sollwert invertieren",
+          "target_grid_power": "Ziel-Netzbezug beim Entladen",
+          "update_interval": "Regelintervall"
+        },
+        "data_description": {
+          "grid_sensor": "Bezug muss positiv, Einspeisung negativ sein – sonst \"Netzsensor invertieren\" aktivieren.",
+          "charge_power_entity": "number/input_number, auf die die Ladeleistung in W geschrieben wird.",
+          "discharge_power_entity": "number/input_number für die Entladeleistung in W. Darf dieselbe Entität wie für die Ladeleistung sein (dann: Entladen positiv, Laden negativ).",
+          "setpoint_invert": "Nur bei gemeinsamer Entität: Laden positiv, Entladen negativ.",
+          "target_grid_power": "Kleiner Restbezug (z. B. 10 W) verhindert Einspeisung ins Netz.",
+          "update_interval": "Abstand zwischen zwei Regelschritten. Zu kurz führt zum Schwingen."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Batteriespeicher-Steuerung",
+        "data": {
+          "soc_sensor": "Ladezustand des Speichers (%)",
+          "grid_sensor": "Netzleistung / Stromimport (W oder kW)",
+          "charge_power_entity": "Entität für Ladeleistung",
+          "discharge_power_entity": "Entität für Entladeleistung",
+          "grid_invert": "Netzsensor invertieren",
+          "setpoint_invert": "Gemeinsamen Sollwert invertieren",
+          "target_grid_power": "Ziel-Netzbezug beim Entladen",
+          "update_interval": "Regelintervall"
+        }
+      }
+    }
+  },
+  "entity": {
+    "number": {
+      "min_soc": { "name": "Mindestladung" },
+      "max_soc": { "name": "Maximalladung" },
+      "max_charge_power": { "name": "Maximale Ladeleistung" },
+      "max_discharge_power": { "name": "Maximale Entladeleistung" }
+    },
+    "time": {
+      "charge_start": { "name": "Laden Start" },
+      "charge_end": { "name": "Laden Ende" },
+      "discharge_start": { "name": "Entladen Start" },
+      "discharge_end": { "name": "Entladen Ende" }
+    },
+    "switch": {
+      "enabled": { "name": "Automatik" }
+    },
+    "sensor": {
+      "mode": {
+        "name": "Betriebsmodus",
+        "state": {
+          "disabled": "Deaktiviert",
+          "idle": "Bereit",
+          "charging": "Lädt",
+          "full": "Voll",
+          "discharging": "Entlädt",
+          "empty": "Mindestladung erreicht",
+          "error": "Fehler"
+        }
+      },
+      "charge_setpoint": { "name": "Ladesollwert" },
+      "discharge_setpoint": { "name": "Entladesollwert" }
+    }
+  }
+}
